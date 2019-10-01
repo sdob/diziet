@@ -11,7 +11,7 @@ void main() {
         final _body = 'Hello world!';
         final _timestamp = 1569950696;
         Map<String, dynamic> obj = {
-          'type': MESSAGE_TYPE_INBOUND_SMS,
+          'type': MESSAGE_TYPE_INCOMING_SMS,
           'payload': {
             'from': _from,
             'to': _to,
@@ -21,7 +21,7 @@ void main() {
         };
 
         final message = TelephonyChannelMessage.fromJson(obj);
-        expect(message.type, equals(MESSAGE_TYPE_INBOUND_SMS));
+        expect(message.type, equals(MESSAGE_TYPE_INCOMING_SMS));
         expect(message.payload['from'], equals(_from));
       });
     });

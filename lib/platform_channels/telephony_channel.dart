@@ -3,7 +3,19 @@ import 'package:flutter/services.dart';
 
 import 'telephony_channel_messages.dart';
 
+/// A wrapper for telephony-related messaging between Flutter and the
+/// host's device-specific code. By telephony we mean message & call-related
+/// updates, including notifications.
+///
+/// Messages (sent or received) must have a type (which must be a string
+/// in `constants.dart`) and a payload (which can be anything serializable
+/// to JSON).
+///
+/// Parts of the code that want to know when messages reach Flutter over
+/// the channel must register themselves as listeners, which means they
+/// must implement [TelephonyChannelListener].
 class TelephonyChannel {
+  // Create a singleton method channel for communicating with the host
   static const _channel = const BasicMessageChannel(
     CHANNEL_NAME_TELEPHONY,
     JSONMessageCodec(),
@@ -31,6 +43,7 @@ class TelephonyChannel {
     instance._listeners.remove(listener);
   }
 
+  /// Send a message object to the host.
   static void send(TelephonyChannelMessage message) {
     _channel.send(message.toJson());
   }
@@ -40,6 +53,9 @@ class TelephonyChannel {
   }
 }
 
+/// An abstract class that objects must extend if they want to register
+/// as listeners for messages coming from the host over the telephony
+/// channel.
 abstract class TelephonyChannelListener {
   void onTelephonyChannelMessage(TelephonyChannelMessage message);
 }
