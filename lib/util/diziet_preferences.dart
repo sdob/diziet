@@ -1,31 +1,35 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// A wrapper for getting/setting shared preferences data in a consistent way.
-class DizietPreferences {
+const KEY_VULGARIAN_AUTH_TOKEN = 'KEY_VULGARIAN_AUTH_TOKEN';
 
-  static Future<String> getVulgarianAuthenticationToken() async {
-    throw UnimplementedError();  // TODO
-  }
+/// Methods for getting/setting shared preferences data in a consistent way.
 
-  /// Helper methods
+Future<String> getVulgarianToken() async {
+  throw UnimplementedError(); // TODO
+}
 
-  static Future<bool> getBooleanPreference(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(key);
-  }
+Future<bool> setVulgarianToken(String token) {
+  return setStringPreference(KEY_VULGARIAN_AUTH_TOKEN, token);
+}
 
-  static Future<bool> setBooleanPreference(String key, bool value) async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.setBool(key, value);
-  }
+/// Helper methods
 
-  static Future<String> getStringPreference(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(key);
-  }
+Future<bool> getBooleanPreference(String key) async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getBool(key);
+}
 
-  static Future<bool> setStringPreference(String key, String value) async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.setString(key, value);
-  }
+Future<bool> setBooleanPreference(String key, bool value) async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.setBool(key, value);
+}
+
+Future<String> getStringPreference(String key) async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getString(key);
+}
+
+Future<bool> setStringPreference(String key, String value) async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.setString(key, value);
 }
