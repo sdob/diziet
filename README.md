@@ -16,3 +16,11 @@ for your operating system, including setting up an editor.
 1. optionally, run `flutter test`, which should tell you whether tests are working. 
 
 1. Open the project directory and get hacking!
+
+## Project structure
+
+At top-level, this is a standard Flutter project: cross-platform
+Dart files are in `lib/`, platform-specific code for Android is
+in `android/`, platform-specific code for iOS is in `ios/`,
+and so on.
+

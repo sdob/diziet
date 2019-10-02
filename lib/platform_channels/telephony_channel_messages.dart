@@ -14,13 +14,13 @@ abstract class TelephonyChannelMessage {
     final Map<String, dynamic> payload = map['payload'];
 
     switch (type) {
-      case MESSAGE_TYPE_CONNECTION_FAILURE:
+      case MESSAGE_HOST_CONNECTION_FAILURE:
         return ConnectionFailure(payload);
-      case MESSAGE_TYPE_INCOMING_SMS:
+      case MESSAGE_HOST_INCOMING_SMS:
         return IncomingSms(payload);
-      case MESSAGE_TYPE_INCOMING_CALL_INVITE:
+      case MESSAGE_HOST_INCOMING_CALL_INVITE:
         return IncomingCallInvite(payload);
-      case MESSAGE_TYPE_INCOMING_CALL_INVITE_CANCELLED:
+      case MESSAGE_HOST_INCOMING_CALL_INVITE_CANCELLED:
         return IncomingCallInviteCancelled();
       default:
         return null;
@@ -39,7 +39,7 @@ class ConnectionFailure extends TelephonyChannelMessage {
       : _errorCode = payload['errorCode'],
         _message = payload['message'];
 
-  get type => MESSAGE_TYPE_CONNECTION_FAILURE;
+  get type => MESSAGE_HOST_CONNECTION_FAILURE;
 
   get payload => {'errorCode': _errorCode, 'message': _message};
 }
@@ -59,7 +59,7 @@ class IncomingSms extends TelephonyChannelMessage {
         _direction = payload['direction'],
         _timestamp = payload['timestamp'];
 
-  String get type => MESSAGE_TYPE_INCOMING_SMS;
+  String get type => MESSAGE_HOST_INCOMING_SMS;
 
   Map<String, dynamic> get payload => <String, dynamic>{
         'from': _from,
@@ -79,7 +79,7 @@ class IncomingCallInvite extends TelephonyChannelMessage {
       : _callerNumber = payload['callerNumber'],
         _recipientNumber = payload['recipientNumber'];
 
-  get type => MESSAGE_TYPE_INCOMING_CALL_INVITE;
+  get type => MESSAGE_HOST_INCOMING_CALL_INVITE;
 
   get payload => {
         'from': _callerNumber,
@@ -90,7 +90,7 @@ class IncomingCallInvite extends TelephonyChannelMessage {
 /// A message from the host telling us that the active call invite
 /// has been cancelled.
 class IncomingCallInviteCancelled extends TelephonyChannelMessage {
-  get type => MESSAGE_TYPE_INCOMING_CALL_INVITE_CANCELLED;
+  get type => MESSAGE_HOST_INCOMING_CALL_INVITE_CANCELLED;
 
   get payload => {};
 }
