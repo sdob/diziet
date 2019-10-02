@@ -10,8 +10,11 @@ class VulgarianHttpClient extends http.BaseClient {
 
   @override
   Future<http.StreamedResponse> send(http.BaseRequest request) async {
+    // Get the token from preferences
     final token = await getVulgarianToken();
+    // Set the Authorization header
     request.headers['Authorization'] = 'Token $token';
+    // Send the request
     return _client.send(request);
   }
 }

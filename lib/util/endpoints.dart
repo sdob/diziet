@@ -16,11 +16,14 @@ class Endpoints {
     // The first time we're asked for an Endpoints instance, we
     // create one
     if (_instance == null) {
+      // Load the .env file
       await DotEnv().load();
       final Map<String, String> env = DotEnv().env;
+      // Configure the singleton instance with the base URL for Vulgarian
       _instance = Endpoints._(env[KEY_VULGARIAN_BASE_URL]);
     }
-    // Otherwise, we return the existing one
+
+    // Return the instance
     return _instance;
   }
 }
