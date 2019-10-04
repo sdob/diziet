@@ -2,6 +2,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' show DotEnv;
 
 const String KEY_VULGARIAN_BASE_URL = 'VULGARIAN_BASE_URL';
 
+/// A wrapper for endpoints that depend on environment variable
+/// configuration.
 class Endpoints {
   static Endpoints _instance;
 

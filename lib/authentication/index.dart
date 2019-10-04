@@ -1,6 +1,6 @@
 import 'package:diziet/util/diziet_preferences.dart'
     show setVulgarianToken, setFirebaseToken, setTwilioToken;
-import 'package:diziet/util/endpoints.dart';
+// import 'package:diziet/util/endpoints.dart';
 
 /// Log the user in to Vulgarian and store their access token.
 Future<void> login(String username, String password) async {
